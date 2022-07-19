@@ -2,8 +2,8 @@ gsap.config({ trialWarn: false });
 gsap.registerPlugin(MorphSVGPlugin);
 
 class CatAnimated extends HTMLElement {
-  static pawsDuration = 0.8;
-  static eyesDuration = 0.4;
+  static pawsDuration = 0.6;
+  static eyesDuration = 0.3;
 
   constructor() {
     super();
