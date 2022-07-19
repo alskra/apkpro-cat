@@ -1,13 +1,14 @@
 gsap.config({ trialWarn: false });
 gsap.registerPlugin(MorphSVGPlugin);
 
-const pawsDuration = 0.8;
-const eyesDuration = 0.5;
-
 class CatAnimated extends HTMLElement {
+  static pawsDuration = 0.8;
+  static eyesDuration = 0.4;
+
   constructor() {
     super();
 
+    const shadow = this.attachShadow({ mode: 'open' });
     const style = document.createElement('style');
     const template = document.createElement('template');
 
@@ -15,15 +16,20 @@ class CatAnimated extends HTMLElement {
       :host {
         display: block;
       }
+
+      svg {
+        display: block;
+        fill: none;
+      }
     `;
 
     template.innerHTML = `
-      <svg class="cat-animated" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <clipPath id="cat-animated-clip-eye-right">
-          <path class="cat-animated-eye-clip" d="M241.03 208.71C252.595 208.71 261.97 197.419 261.97 183.49C261.97 169.561 252.595 158.27 241.03 158.27C229.465 158.27 220.09 169.561 220.09 183.49C220.09 197.419 229.465 208.71 241.03 208.71Z" fill="#95E8A5" stroke="black" stroke-width="3" stroke-miterlimit="10"/>
+          <path style="transform: scale(calc((41.88 + 3) / 41.88), calc((50.44 + 3) / 50.44)); transform-origin: calc(220.09px + 41.88px / 2) calc(158.27px + 50.44px / 2);" class="cat-animated-eye-clip" d="M241.03 208.71C252.595 208.71 261.97 197.419 261.97 183.49C261.97 169.561 252.595 158.27 241.03 158.27C229.465 158.27 220.09 169.561 220.09 183.49C220.09 197.419 229.465 208.71 241.03 208.71Z"/>
         </clipPath>
         <clipPath id="cat-animated-clip-eye-left">
-          <path class="cat-animated-eye-clip" d="M314.56 212.69C325.871 212.69 335.04 200.92 335.04 186.4C335.04 171.88 325.871 160.11 314.56 160.11C303.249 160.11 294.08 171.88 294.08 186.4C294.08 200.92 303.249 212.69 314.56 212.69Z" fill="#95E8A5" stroke="black" stroke-width="3" stroke-miterlimit="10"/>
+          <path style="transform: scale(calc((40.96 + 3) / 40.96), calc((52.58 + 3) / 52.58)); transform-origin: calc(294.08px + 40.96px / 2) calc(160.11px + 52.58px / 2);" class="cat-animated-eye-clip" d="M314.56 212.69C325.871 212.69 335.04 200.92 335.04 186.4C335.04 171.88 325.871 160.11 314.56 160.11C303.249 160.11 294.08 171.88 294.08 186.4C294.08 200.92 303.249 212.69 314.56 212.69Z"/>
         </clipPath>
 
         <path class="cat-animated-blanket" d="M24.1299 481.73C34.0499 480.397 43.9865 479.257 53.9399 478.31C63.9399 477.31 73.8499 476.39 83.8299 475.63C103.79 474.13 123.79 473.213 143.83 472.88H151.35C153.85 472.88 156.35 472.88 158.86 472.88C163.867 472.953 168.867 473.067 173.86 473.22C183.86 473.53 193.86 473.8 203.86 474.29C208.86 474.54 213.86 474.83 218.86 475.36C221.38 475.61 223.86 475.96 226.42 476.46C227.702 476.719 228.967 477.053 230.21 477.46C231.51 477.89 232.64 478.39 233.8 478.88C238.25 480.926 242.911 482.478 247.7 483.51C252.36 484.505 257.205 484.193 261.7 482.61C263.88 481.78 266.07 480.55 268.47 479.54C270.873 478.505 273.391 477.76 275.97 477.32C278.533 476.889 281.132 476.712 283.73 476.79C286.287 476.895 288.835 477.158 291.36 477.58C293.88 477.944 296.38 478.434 298.85 479.05C301.33 479.65 303.77 480.49 306.11 481.26C307.25 481.643 308.412 481.957 309.59 482.2L311.34 482.52L313.11 482.69C315.494 482.841 317.888 482.707 320.24 482.29C325.023 481.33 329.641 479.679 333.95 477.39C335.07 476.85 336.17 476.27 337.35 475.73L339.15 474.96L340.99 474.32C343.435 473.553 345.931 472.958 348.46 472.54C358.46 470.86 368.46 470.54 378.46 470.19C388.46 469.84 398.46 469.71 408.46 469.53C418.46 469.35 428.46 469.41 438.46 469.7C448.46 469.99 458.46 470.58 468.46 471.37C478.46 472.16 488.39 473.15 498.31 474.37C478.4 472.52 458.43 471.31 438.45 471.14C428.45 471 418.467 471.083 408.5 471.39C398.5 471.71 388.5 472.01 378.5 472.45C373.5 472.68 368.5 472.94 363.57 473.34C358.64 473.74 353.66 474.19 348.81 475.05C346.406 475.461 344.033 476.039 341.71 476.78L340.01 477.38L338.37 478.09C337.27 478.59 336.16 479.18 335.04 479.74C330.51 482.16 325.652 483.912 320.62 484.94C318.048 485.407 315.429 485.565 312.82 485.41C310.212 485.228 307.638 484.714 305.16 483.88C302.74 483.1 300.44 482.33 298.06 481.75C295.68 481.17 293.29 480.75 290.83 480.37C288.421 479.979 285.989 479.738 283.55 479.65C281.145 479.587 278.74 479.762 276.37 480.17C274.02 480.585 271.727 481.276 269.54 482.23C267.33 483.17 265.15 484.42 262.66 485.37C257.657 487.128 252.266 487.474 247.08 486.37C242.089 485.279 237.233 483.642 232.6 481.49C231.45 481.01 230.3 480.49 229.22 480.14C228.086 479.766 226.931 479.462 225.76 479.23C223.38 478.75 220.94 478.4 218.48 478.14C213.56 477.6 208.59 477.28 203.61 477.01C193.61 476.48 183.61 476.16 173.66 475.81C163.71 475.46 153.66 475.23 143.72 475.18C123.72 475.18 103.72 475.89 83.8199 477.09C63.9199 478.29 43.9999 479.81 24.1299 481.73Z" fill="#1C1C1C"/>
@@ -37,8 +43,8 @@ class CatAnimated extends HTMLElement {
         <path d="M285.44 212.22C285.53 215.42 283.77 219.51 281.02 219.89C278.02 220.3 274.75 216.14 274.54 212.22C274.35 208.62 276.7 204.36 279.54 204.22C282.38 204.08 285.33 208.45 285.44 212.22Z" fill="black"/>
 
         <g clip-path="url(#cat-animated-clip-eye-right)">
-          <path class="cat-animated-eye" d="M241.03 208.71C252.595 208.71 261.97 197.419 261.97 183.49C261.97 169.561 252.595 158.27 241.03 158.27C229.465 158.27 220.09 169.561 220.09 183.49C220.09 197.419 229.465 208.71 241.03 208.71Z" fill="#95E8A5" stroke="red" stroke-width="3" stroke-miterlimit="10"/>
-          <path d="M242.18 194.73C246.068 194.73 249.22 189.801 249.22 183.72C249.22 177.639 246.068 172.71 242.18 172.71C238.292 172.71 235.14 177.639 235.14 183.72C235.14 189.801 238.292 194.73 242.18 194.73Z" fill="red"/>
+          <path class="cat-animated-eye" d="M241.03 208.71C252.595 208.71 261.97 197.419 261.97 183.49C261.97 169.561 252.595 158.27 241.03 158.27C229.465 158.27 220.09 169.561 220.09 183.49C220.09 197.419 229.465 208.71 241.03 208.71Z" fill="#95E8A5" stroke="black" stroke-width="3" stroke-miterlimit="10"/>
+          <path d="M242.18 194.73C246.068 194.73 249.22 189.801 249.22 183.72C249.22 177.639 246.068 172.71 242.18 172.71C238.292 172.71 235.14 177.639 235.14 183.72C235.14 189.801 238.292 194.73 242.18 194.73Z" fill="#0C0C0C"/>
           <path d="M248.71 182C251.074 182 252.99 179.614 252.99 176.67C252.99 173.726 251.074 171.34 248.71 171.34C246.346 171.34 244.43 173.726 244.43 176.67C244.43 179.614 246.346 182 248.71 182Z" fill="white"/>
         </g>
 
@@ -86,15 +92,14 @@ class CatAnimated extends HTMLElement {
       </svg>
     `;
 
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.append(style);
-    this.shadowRoot.append(template.content);
+    shadow.append(style);
+    shadow.append(template.content);
 
-    const catPawRightPaths = this.shadowRoot.querySelectorAll('.cat-animated-paw-right');
-    const catPawLeftPaths = this.shadowRoot.querySelectorAll('.cat-animated-paw-left');
-    const catBlanketPaths = this.shadowRoot.querySelectorAll('.cat-animated-blanket');
-    const catEyesPaths = this.shadowRoot.querySelectorAll('.cat-animated-eye');
-    const catEyesClipPaths = this.shadowRoot.querySelectorAll('.cat-animated-eye-clip');
+    const catPawRightPaths = shadow.querySelectorAll('.cat-animated-paw-right');
+    const catPawLeftPaths = shadow.querySelectorAll('.cat-animated-paw-left');
+    const catBlanketPaths = shadow.querySelectorAll('.cat-animated-blanket');
+    const catEyesPaths = shadow.querySelectorAll('.cat-animated-eye');
+    const catEyesClipPaths = shadow.querySelectorAll('.cat-animated-eye-clip');
 
     const catPawRightFrames = [
       [
@@ -146,8 +151,8 @@ class CatAnimated extends HTMLElement {
       catPawRightPaths.forEach((path, pathIndex) => {
         tl1.to(path, {
           morphSVG: frame[pathIndex],
-          duration: pawsDuration,
-        }, pathIndex ? `-=${pawsDuration}` : null);
+          duration: CatAnimated.pawsDuration,
+        }, pathIndex ? `-=${CatAnimated.pawsDuration}` : null);
       });
     });
 
@@ -155,8 +160,8 @@ class CatAnimated extends HTMLElement {
       catPawLeftPaths.forEach((path, pathIndex) => {
         tl1.to(path, {
           morphSVG: frame[pathIndex],
-          duration: pawsDuration,
-        }, pathIndex ? `-=${pawsDuration}` : null);
+          duration: CatAnimated.pawsDuration,
+        }, pathIndex ? `-=${CatAnimated.pawsDuration}` : null);
       });
     });
 
@@ -164,8 +169,8 @@ class CatAnimated extends HTMLElement {
       catBlanketPaths.forEach((path, pathIndex) => {
         tl1.to(path, {
           morphSVG: frame[pathIndex],
-          duration: pawsDuration,
-        }, frameIndex * pawsDuration);
+          duration: CatAnimated.pawsDuration,
+        }, frameIndex * CatAnimated.pawsDuration + (frameIndex % 2 === 0 ? -0.08 : 0.08));
       });
     });
 
@@ -178,8 +183,8 @@ class CatAnimated extends HTMLElement {
       catEyesPaths.forEach((path, pathIndex) => {
         tl2.to([path, catEyesClipPaths[pathIndex]], {
           morphSVG: frame[pathIndex],
-          duration: eyesDuration,
-        }, frameIndex === 0 ? 3 : 3 + frameIndex * eyesDuration);
+          duration: CatAnimated.eyesDuration,
+        }, frameIndex === 0 ? 3 : 3 + frameIndex * CatAnimated.eyesDuration);
       });
     });
   }
