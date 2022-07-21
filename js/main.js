@@ -23,6 +23,25 @@ class CatAnimated extends HTMLElement {
         height: 100%;
         fill: none;
       }
+
+      @keyframes tassel {
+        0% {
+          transform: skewX(-2deg);
+        }
+
+        50% {
+          transform: skewX(0deg);
+        }
+
+        100% {
+          transform: skewX(-2deg);
+        }
+      }
+
+      .tassel {
+        animation: tassel 1.2s ease-in-out infinite;
+        transform-origin: calc(218.62px + 7px) calc(82.31px + 7px);
+      }
     `;
 
     template.innerHTML = `
@@ -80,15 +99,19 @@ class CatAnimated extends HTMLElement {
 
           <path d="M198.22 120.14C200.82 130.873 203.424 141.61 206.03 152.35C219.089 155.668 232.638 156.609 246.03 155.13C286.31 150.57 311.97 124.95 320.13 116.06L311.46 85.1801L198.22 120.14Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
           <path d="M152 119.42L235.82 47.59L354.46 49.59L268 121.21L152 119.42Z" fill="#4F8BFA" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M220.53 87C219.07 87.42 216.95 88 214.4 88.89C204.15 92.27 197.07 95.75 188.4 100.04C171.67 108.34 160.66 113.94 150.21 122.45C147.614 124.414 145.501 126.945 144.03 129.85C140.76 136.59 142.33 143.67 144.03 149.85C147.643 162.702 152.493 175.173 158.51 187.09L165.15 183.45C162.335 178.123 159.945 172.583 158 166.88C153.77 154.39 149.29 141.15 154.69 130.67C157.87 124.51 163.31 121.55 168.1 119.02C180.1 112.69 198.71 103.44 224.1 92.93C223 91 221.74 89 220.53 87Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M165.13 181.35C164.483 181.054 163.784 180.888 163.072 180.862C162.361 180.837 161.651 180.951 160.984 181.199C160.317 181.448 159.705 181.825 159.184 182.31C158.662 182.795 158.241 183.378 157.945 184.025C157.649 184.672 157.484 185.372 157.458 186.083C157.432 186.795 157.546 187.504 157.795 188.172C158.043 188.839 158.421 189.45 158.905 189.972C159.39 190.493 159.973 190.914 160.62 191.21C163.83 192.8 168.23 190.45 168.73 187.11C168.839 185.889 168.547 184.666 167.897 183.626C167.247 182.586 166.276 181.787 165.13 181.35V181.35Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
+
+          <g class="tassel">
+            <path d="M220.53 87C219.07 87.42 216.95 88 214.4 88.89C204.15 92.27 197.07 95.75 188.4 100.04C171.67 108.34 160.66 113.94 150.21 122.45C147.614 124.414 145.501 126.945 144.03 129.85C140.76 136.59 142.33 143.67 144.03 149.85C147.643 162.702 152.493 175.173 158.51 187.09L165.15 183.45C162.335 178.123 159.945 172.583 158 166.88C153.77 154.39 149.29 141.15 154.69 130.67C157.87 124.51 163.31 121.55 168.1 119.02C180.1 112.69 198.71 103.44 224.1 92.93C223 91 221.74 89 220.53 87Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
+            <path d="M165.13 181.35C164.483 181.054 163.784 180.888 163.072 180.862C162.361 180.837 161.651 180.951 160.984 181.199C160.317 181.448 159.705 181.825 159.184 182.31C158.662 182.795 158.241 183.378 157.945 184.025C157.649 184.672 157.484 185.372 157.458 186.083C157.432 186.795 157.546 187.504 157.795 188.172C158.043 188.839 158.421 189.45 158.905 189.972C159.39 190.493 159.973 190.914 160.62 191.21C163.83 192.8 168.23 190.45 168.73 187.11C168.839 185.889 168.547 184.666 167.897 183.626C167.247 182.586 166.276 181.787 165.13 181.35V181.35Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
+            <path d="M159.5 190.44C159.68 196.02 159.867 201.6 160.06 207.18" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M162.62 191.71C163.36 198.59 164.103 205.467 164.85 212.34" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M165 191.32L169.28 210.32" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M166.71 190.35L173.78 215.35" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M166.71 190.35L176.38 207.41" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M168.73 187.11L176 200.2" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+
           <path d="M203.92 143.63C213.856 146.144 224.124 147.082 234.35 146.41C252.48 145.18 265.45 139.09 276.76 133.65C291.673 126.457 305.39 117.014 317.43 105.65" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M159.5 190.44C159.68 196.02 159.867 201.6 160.06 207.18" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M162.62 191.71C163.36 198.59 164.103 205.467 164.85 212.34" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M165 191.32L169.28 210.32" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M166.71 190.35L173.78 215.35" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M166.71 190.35L176.38 207.41" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M168.73 187.11L176 200.2" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M218.62 88.9401C218.647 90.4127 219.148 91.8375 220.049 93.0029C220.95 94.1684 222.202 95.0125 223.62 95.4101C225.313 95.9108 227.133 95.7531 228.715 94.9687C230.297 94.1842 231.524 92.831 232.15 91.1801C232.68 89.673 232.671 88.0288 232.124 86.5279C231.576 85.0271 230.526 83.7625 229.15 82.9501C225.07 80.8001 218.82 84.4301 218.62 88.9401Z" fill="#213A58" stroke="#1C1C1C" stroke-width="2" stroke-miterlimit="10"/>
         </g>
 
@@ -102,8 +125,6 @@ class CatAnimated extends HTMLElement {
     const pawRightPaths = shadow.querySelectorAll('.paw-right');
     const pawLeftPaths = shadow.querySelectorAll('.paw-left');
     const blanketPaths = shadow.querySelectorAll('.blanket');
-    const blanketRightPaths = shadow.querySelectorAll('.blanket-right');
-    const blanketLeftPaths = shadow.querySelectorAll('.blanket-left');
     const eyesPaths = shadow.querySelectorAll('.eye');
     const eyesClipPaths = shadow.querySelectorAll('.eye-clip');
 
