@@ -8,13 +8,36 @@
   <script src="js/MorphSVGPlugin3.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <style>
-    cat-animated {
-      margin: 0 auto;
-      max-width: 512px;
+    body {
+      margin: 0;
+    }
+
+    .grid {
+      --width: min(512px, 100%);
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    cat-animated:nth-child(1) {
+      width: var(--width);
+    }
+
+    cat-animated:nth-child(2) {
+      width: calc(var(--width) / 2);
+    }
+
+    cat-animated:nth-child(3) {
+      width: calc(var(--width) / 3);
     }
   </style>
 </head>
 <body>
-<cat-animated></cat-animated>
+<div class="grid">
+  <cat-animated></cat-animated>
+  <cat-animated></cat-animated>
+  <cat-animated></cat-animated>
+</div>
 </body>
 </html>
